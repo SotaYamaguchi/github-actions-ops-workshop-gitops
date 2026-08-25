@@ -1,0 +1,26 @@
+apiVersion: workspace.devfile.io/v1alpha2
+kind: DevWorkspace
+metadata:
+  name: github-actions-workshop
+  namespace: user-02-devspaces
+  annotations:
+    che.eclipse.org/che-editor: che-incubator/che-code/latest
+spec:
+  routingClass: che
+  started: true
+  template:
+    components:
+    - container:
+        env:
+        - name: HOST_USERS
+          value: "true"
+        image: registry.redhat.io/devspaces/udi-rhel9@sha256:2708a8082c9c0aa569e31c79695483311cae3533e42b950fd02384b0def75415
+        sourceMapping: /projects
+      name: universal-developer-image
+    projects:
+    - git:
+        checkoutFrom:
+          revision: user-02
+        remotes:
+          origin: https://github.com/SotaYamaguchi/github-actions-ops-workshop.git
+      name: github-actions-ops-workshop

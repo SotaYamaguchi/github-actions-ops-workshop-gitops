@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: user-01-devspaces
+  labels:
+    workshop: github-actions
+    user: user-01

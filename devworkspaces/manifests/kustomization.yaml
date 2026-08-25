@@ -1,0 +1,34 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - namespace-user-01.yaml
+  - devworkspace-user-01.yaml
+  - namespace-user-02.yaml
+  - devworkspace-user-02.yaml
+  - namespace-user-03.yaml
+  - devworkspace-user-03.yaml
+  - namespace-user-04.yaml
+  - devworkspace-user-04.yaml
+  - namespace-user-05.yaml
+  - devworkspace-user-05.yaml
+  - namespace-user-06.yaml
+  - devworkspace-user-06.yaml
+  - namespace-user-07.yaml
+  - devworkspace-user-07.yaml
+  - namespace-user-08.yaml
+  - devworkspace-user-08.yaml
+  - namespace-user-09.yaml
+  - devworkspace-user-09.yaml
+  - namespace-user-10.yaml
+  - devworkspace-user-10.yaml
+  - namespace-user-11.yaml
+  - devworkspace-user-11.yaml
+  - namespace-user-12.yaml
+  - devworkspace-user-12.yaml
+  - namespace-user-13.yaml
+  - devworkspace-user-13.yaml
+  - namespace-user-14.yaml
+  - devworkspace-user-14.yaml
+  - namespace-user-15.yaml
+  - devworkspace-user-15.yaml

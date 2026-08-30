@@ -1,0 +1,57 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: workshop-setup
+  namespace: openshift-pipelines
+spec:
+  params:
+  - name: num-users
+    type: string
+    default: "15"
+    description: "Number of workshop users"
+  - name: github-repo
+    type: string
+    default: "SotaYamaguchi/github-actions-ops-workshop"
+    description: "GitHub repository name"
+  - name: github-token-secret
+    type: string
+    default: "github-token"
+    description: "Secret containing GitHub token"
+
+  tasks:
+  - name: create-htpasswd
+    taskRef:
+      name: create-htpasswd
+    params:
+    - name: num-users
+      value: $(params.num-users)
+
+  - name: update-oauth
+    taskRef:
+      name: update-oauth
+    runAfter:
+    - create-htpasswd
+
+  - name: setup-github
+    taskRef:
+      name: setup-github
+    params:
+    - name: github-repo
+      value: $(params.github-repo)
+    - name: num-users
+      value: $(params.num-users)
+    - name: github-token-secret
+      value: $(params.github-token-secret)
+    runAfter:
+    - update-oauth
+
+  - name: generate-gitops-manifests
+    taskRef:
+      name: generate-gitops-manifests
+    params:
+    - name: num-users
+      value: $(params.num-users)
+    - name: github-repo
+      value: $(params.github-repo)
+    runAfter:
+    - setup-github

@@ -1,0 +1,95 @@
+apiVersion: workspace.devfile.io/v1alpha2
+kind: DevWorkspace
+metadata:
+  annotations:
+    che.eclipse.org/che-editor: che-incubator/che-code/latest
+    che.eclipse.org/devfile: |
+      schemaVersion: 2.3.0
+    che.eclipse.org/devfile-source: |
+      scm:
+        repo: https://github.com/SotaYamaguchi/github-actions-ops-workshop.git
+        revision: user-01
+        fileName: repo
+      factory:
+        params: >-
+          url=https://github.com/SotaYamaguchi/github-actions-ops-workshop/tree/user-01
+    che.eclipse.org/last-updated-timestamp: "2026-08-25T06:53:27.178Z"
+    controller.devfile.io/started-at: "1787640925037"
+  creationTimestamp: "2026-08-25T06:53:25Z"
+  finalizers:
+  - rbac.controller.devfile.io
+  generation: 4
+  labels:
+    controller.devfile.io/creator: baf72bf0-be7e-4c65-935c-c5633d435dca
+    kubernetes.io/metadata.name: github-actions-ops-workshop-vdb7
+  name: github-actions-ops-workshop-vdb7
+  namespace: user-01-devspaces
+  resourceVersion: "4809013"
+  uid: a9bc440a-df26-4549-9ff5-0dfe0f3f74e6
+spec:
+  contributions:
+  - kubernetes:
+      name: che-code-github-actions-ops-workshop-vdb7
+    name: editor
+  routingClass: che
+  started: true
+  template:
+    attributes:
+      controller.devfile.io/bootstrap-devworkspace: true
+      controller.devfile.io/devworkspace-config:
+        name: devworkspace-config
+        namespace: openshift-devspaces
+      controller.devfile.io/scc: container-build
+      controller.devfile.io/storage-type: per-workspace
+    components:
+    - container:
+        env:
+        - name: HOST_USERS
+          value: "true"
+        image: registry.redhat.io/devspaces/udi-rhel9@sha256:2708a8082c9c0aa569e31c79695483311cae3533e42b950fd02384b0def75415
+        sourceMapping: /projects
+      name: universal-developer-image
+    projects:
+    - git:
+        checkoutFrom:
+          revision: user-01
+        remotes:
+          origin: https://github.com/SotaYamaguchi/github-actions-ops-workshop.git
+      name: github-actions-ops-workshop
+status:
+  conditions:
+  - lastTransitionTime: "2026-08-25T06:53:27Z"
+    message: DevWorkspace is starting
+    status: "True"
+    type: Started
+  - lastTransitionTime: "2026-08-25T06:53:27Z"
+    message: Resolved plugins and parents from DevWorkspace
+    status: "True"
+    type: DevWorkspaceResolved
+  - lastTransitionTime: "2026-08-25T06:53:27Z"
+    message: Storage ready
+    status: "True"
+    type: StorageReady
+  - lastTransitionTime: "2026-08-25T06:53:28Z"
+    message: Networking ready
+    status: "True"
+    type: RoutingReady
+  - lastTransitionTime: "2026-08-25T06:53:31Z"
+    message: DevWorkspace serviceaccount ready
+    status: "True"
+    type: ServiceAccountReady
+  - lastTransitionTime: "2026-08-25T06:53:31Z"
+    message: DevWorkspace secrets ready
+    status: "True"
+    type: PullSecretsReady
+  - lastTransitionTime: "2026-08-25T06:55:21Z"
+    message: DevWorkspace deployment ready
+    status: "True"
+    type: DeploymentReady
+  - lastTransitionTime: "2026-08-25T06:55:25Z"
+    status: "True"
+    type: Ready
+  devworkspaceId: workspacea9bc440adf264549
+  mainUrl: https://devspaces.apps.cluster-485tj.485tj.sandbox2418.opentlc.com/user-01/github-actions-ops-workshop-vdb7/3100/
+  message: https://devspaces.apps.cluster-485tj.485tj.sandbox2418.opentlc.com/user-01/github-actions-ops-workshop-vdb7/3100/
+  phase: Running

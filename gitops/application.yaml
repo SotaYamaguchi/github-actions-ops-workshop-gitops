@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: devworkspaces-workshop
+  namespace: openshift-gitops
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/SotaYamaguchi/github-actions-ops-workshop-gitops.git
+    targetRevision: main
+    path: devworkspaces/manifests
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

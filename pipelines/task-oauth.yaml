@@ -1,0 +1,41 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: update-oauth
+  namespace: openshift-pipelines
+spec:
+  steps:
+  - name: patch-oauth
+    image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
+    script: |
+      #!/bin/bash
+      set -e
+
+      echo "=== OAuth 設定更新 ==="
+
+      # HTPasswd プロバイダーを追加（既に存在する場合はスキップ）
+      oc patch oauth cluster --type=json -p='[
+        {
+          "op": "add",
+          "path": "/spec/identityProviders/-",
+          "value": {
+            "name": "htpasswd_provider",
+            "mappingMethod": "claim",
+            "type": "HTPasswd",
+            "htpasswd": {
+              "fileData": {
+                "name": "htpass-secret"
+              }
+            }
+          }
+        }
+      ]' || echo "HTPasswd provider already exists"
+
+      echo "✓ OAuth 設定更新完了"
+
+      # OAuth Pod の再起動を待機
+      echo "OAuth Pod の再起動を待機中..."
+      oc rollout restart deployment/oauth-openshift -n openshift-authentication
+      oc rollout status deployment/oauth-openshift -n openshift-authentication --timeout=300s
+
+      echo "✓ OAuth Pod 再起動完了"

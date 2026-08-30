@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  generateName: workshop-setup-
+  namespace: openshift-pipelines
+spec:
+  pipelineRef:
+    name: workshop-setup
+  params:
+  - name: num-users
+    value: "15"
+  - name: github-repo
+    value: "SotaYamaguchi/github-actions-ops-workshop"
+  - name: github-token-secret
+    value: "github-token"
+  workspaces:
+  - name: shared-workspace
+    volumeClaimTemplate:
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi

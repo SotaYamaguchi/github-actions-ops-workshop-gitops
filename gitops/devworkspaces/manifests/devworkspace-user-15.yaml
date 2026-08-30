@@ -1,0 +1,18 @@
+apiVersion: workspace.devfile.io/v1alpha2
+kind: DevWorkspace
+metadata:
+  name: github-actions-workshop
+  namespace: user-15-devspaces
+  annotations:
+    che.eclipse.org/che-editor: che-incubator/che-code/latest
+spec:
+  routingClass: che
+  started: true
+  template:
+    projects:
+    - git:
+        checkoutFrom:
+          revision: user-15
+        remotes:
+          origin: https://github.com/SotaYamaguchi/github-actions-ops-workshop.git
+      name: github-actions-ops-workshop

@@ -12,6 +12,14 @@ spec:
     - name: ide
       uri: http://devspaces-dashboard.openshift-devspaces.svc.cluster.local:8080/dashboard/api/editors/devfile?che-editor=che-incubator/che-code/latest
   template:
+    components:
+      - name: universal-developer-image
+        container:
+          image: registry.redhat.io/devspaces/udi-rhel9@sha256:2708a8082c9c0aa569e31c79695483311cae3533e42b950fd02384b0def75415
+          sourceMapping: /projects
+          env:
+            - name: HOST_USERS
+              value: "true"
     projects:
     - git:
         checkoutFrom:

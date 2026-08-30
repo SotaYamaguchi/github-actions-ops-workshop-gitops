@@ -23,7 +23,7 @@ spec:
     projects:
     - git:
         checkoutFrom:
-          revision: USER_BRANCH
+          revision: main
         remotes:
-          origin: https://github.com/SotaYamaguchi/github-actions-ops-workshop.git
+          origin: USER_REPO_URL
       name: github-actions-ops-workshop

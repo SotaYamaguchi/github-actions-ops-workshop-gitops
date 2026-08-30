@@ -8,6 +8,9 @@ metadata:
 spec:
   routingClass: che
   started: true
+  contributions:
+    - name: ide
+      uri: http://devspaces-dashboard.openshift-devspaces.svc.cluster.local:8080/dashboard/api/editors/devfile?che-editor=che-incubator/che-code/latest
   template:
     projects:
     - git:

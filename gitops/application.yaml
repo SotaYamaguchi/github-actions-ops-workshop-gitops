@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/SotaYamaguchi/github-actions-ops-workshop-gitops.git
     targetRevision: main
-    path: devworkspaces/manifests
+    path: gitops/devworkspaces/manifests
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:
